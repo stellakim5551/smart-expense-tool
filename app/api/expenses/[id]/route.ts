@@ -25,7 +25,7 @@ export async function PUT(request: Request, context: RouteContext) {
   const expenseId = parseId(id);
 
   if (!expenseId) {
-    return NextResponse.json({ error: "记录不存在" }, { status: 404 });
+    return NextResponse.json({ error: "Record not found" }, { status: 404 });
   }
 
   const body = (await request.json()) as ExpenseInput;
@@ -49,7 +49,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
   const expenseId = parseId(id);
 
   if (!expenseId) {
-    return NextResponse.json({ error: "记录不存在" }, { status: 404 });
+    return NextResponse.json({ error: "Record not found" }, { status: 404 });
   }
 
   await deleteExpense(expenseId);
