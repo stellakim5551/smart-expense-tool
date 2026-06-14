@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import initSqlJs, { Database, SqlJsStatic } from "sql.js";
 
@@ -16,7 +17,7 @@ export type ExpenseInput = {
   amount: number;
 };
 
-const dataDir = path.join(process.cwd(), "data");
+const dataDir = process.env.VERCEL ? path.join(os.tmpdir(), "expense-data") : path.join(process.cwd(), "data");
 const dbPath = path.join(dataDir, "expenses.sqlite");
 
 let sqlPromise: Promise<SqlJsStatic> | null = null;
